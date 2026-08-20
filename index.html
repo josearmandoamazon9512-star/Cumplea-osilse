@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Para Ilse 🎀</title>
+<style>
+:root{
+  --pink:#d98fbc;--rose:#a95f88;--cream:#fff9fc;--ink:#514653;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}
+body{
+  background:
+    radial-gradient(circle at 10% 10%,#ffe4f1 0 12%,transparent 30%),
+    radial-gradient(circle at 90% 20%,#eee2ff 0 12%,transparent 32%),
+    linear-gradient(150deg,#fff9fc,#f7f0ff);
+  overflow:hidden;
+}
+#app{min-height:100vh;position:relative}
+.slide{
+  position:absolute;inset:0;min-height:100vh;padding:30px 20px 90px;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transform:translateX(28px) scale(.98);
+  transition:opacity .55s ease,transform .55s ease;
+}
+.slide.active{opacity:1;pointer-events:auto;transform:none}
+.card{
+  width:min(94vw,560px);max-height:82vh;overflow:auto;
+  background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);
+  border-radius:34px;padding:30px 24px;text-align:center;
+  box-shadow:0 24px 70px rgba(113,76,118,.18);backdrop-filter:blur(14px);
+}
+.kicker{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#a77a9a;font-weight:800}
+h1{font-size:clamp(34px,10vw,58px);line-height:1.03;margin:12px 0 16px;color:var(--rose)}
+h2{font-size:clamp(28px,8vw,42px);margin:8px 0 16px;color:var(--rose)}
+p{font-size:18px;line-height:1.65;margin:10px auto;max-width:470px}
+.big{font-size:84px;line-height:1;margin:8px 0 18px;animation:bob 2.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(2deg)}}
+button{
+  border:0;border-radius:999px;padding:14px 23px;margin:8px 4px;
+  font-size:17px;font-weight:800;cursor:pointer;color:#fff;background:var(--pink);
+  box-shadow:0 10px 25px rgba(217,143,188,.30)
+}
+button.secondary{background:#fff;color:var(--rose);border:1px solid #f0d5e5;box-shadow:none}
+.controls{
+  position:fixed;z-index:20;left:0;right:0;bottom:22px;
+  display:flex;justify-content:center;align-items:center;gap:7px
+}
+.dot{width:9px;height:9px;border-radius:50%;background:#d8c8d5;transition:.3s}
+.dot.on{width:25px;border-radius:10px;background:var(--pink)}
+.nav{position:fixed;z-index:20;bottom:17px;right:15px}
+.nav button{padding:10px 15px;font-size:14px;margin:0}
+.float{position:absolute;font-size:32px;opacity:.72;animation:float 5s ease-in-out infinite;pointer-events:none}
+.f1{left:6%;top:12%}.f2{right:7%;top:18%;animation-delay:1s}.f3{left:8%;bottom:18%;animation-delay:2s}.f4{right:8%;bottom:14%;animation-delay:.5s}
+@keyframes float{50%{transform:translateY(-18px) rotate(5deg)}}
+.wishes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.wish{padding:17px 10px;border-radius:20px;background:#fff5fa;border:1px solid #f5dce9;font-weight:700}
+.timeline{text-align:left;margin:18px auto;max-width:440px}
+.row{display:flex;gap:12px;align-items:flex-start;margin:13px 0}
+.icon{font-size:25px}
+.row strong{display:block;color:#8f5b80}
+.videoBox{
+  aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#f7ddea,#eee4ff);
+  display:flex;align-items:center;justify-content:center;margin:18px 0;border:1px solid #efd9e9;
+}
+.videoBox video{width:100%;height:100%;object-fit:cover;display:none}
+.videoHint{padding:20px;color:#8d7287}
+.small{font-size:13px;color:#927f90}
+#confetti{position:fixed;inset:0;z-index:30;pointer-events:none}
+.bit{position:absolute;top:-30px;animation:fall 4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
+.spark{display:inline-block;animation:twinkle 1.8s infinite}
+@keyframes twinkle{50%{transform:scale(1.3) rotate(8deg);opacity:.65}}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section class="slide active" data-title="Inicio">
+  <span class="float f1">🎈</span><span class="float f2">🎀</span><span class="float f3">✨</span><span class="float f4">🌸</span>
+  <div class="card">
+    <div class="big">🎁</div>
+    <div class="kicker">Hay una pequeña sorpresa</div>
+    <h1>Para Ilse</h1>
+    <p>Antes de continuar... tienes que abrir tu regalo. 💗</p>
+    <button onclick="openCard()">Abrir la sorpresa 🎀</button>
+    <p class="small">Pista: toca el botón para que empiece la música.</p>
+  </div>
+</section>
+
+<section class="slide" data-title="Hoy">
+  <span class="float f1">🎂</span><span class="float f2">⭐</span>
+  <div class="card">
+    <div class="big">🎉</div>
+    <div class="kicker">Hoy se celebra</div>
+    <h2>Un día especial</h2>
+    <p>Porque hoy toca dejar las preocupaciones un ratito a un lado...</p>
+    <p><b>y simplemente disfrutar. ✨</b></p>
+    <button onclick="next()">Continuar →</button>
+  </div>
+</section>
+
+<section class="slide" data-title="Deseo">
+  <span class="float f3">💫</span><span class="float f4">🎈</span>
+  <div class="card">
+    <div class="big">🌷</div>
+    <div class="kicker">Un pequeño deseo</div>
+    <h2>Que este nuevo año...</h2>
+    <div class="wishes">
+      <div class="wish">✨ Te traiga momentos bonitos</div>
+      <div class="wish">😂 Muchas razones para reír</div>
+      <div class="wish">💖 Gente que te quiera mucho</div>
+      <div class="wish">🌟 Y metas que te hagan ilusión</div>
+    </div>
+    <button onclick="next()">Hay más 🎀</button>
+  </div>
+</section>
+
+<section class="slide" data-title="Mensaje">
+  <span class="float f1">🌸</span><span class="float f2">✨</span>
+  <div class="card">
+    <div class="big">💌</div>
+    <div class="kicker">Y ahora sí...</div>
+    <h2>¡Feliz cumpleaños, Ilse!</h2>
+    <p>¡¡¡Que te la pases súper genial en tu día!!!</p>
+    <p>Que cumplas muchos años más en compañía de tus seres queridos.</p>
+    <p><span class="spark">✨</span> Espero que tengas un día muy bonito. <span class="spark">✨</span></p>
+    <button onclick="next()">Ver una sorpresa 🎬</button>
+  </div>
+</section>
+
+<section class="slide" data-title="Video">
+  <div class="card">
+    <div class="big">🎬</div>
+    <div class="kicker">Un recuerdo para guardar</div>
+    <h2>Una última cosita...</h2>
+    <div class="videoBox">
+      <video id="birthdayVideo" controls playsinline preload="metadata">
+        <source src="birthday-video.mp4" type="video/mp4">
+      </video>
+      <div class="videoHint" id="videoHint">
+        <div style="font-size:45px">🎞️</div>
+        <b>Aquí irá tu video</b>
+        <p class="small">Cuando me mandes el video, lo integramos aquí.</p>
+      </div>
+    </div>
+    <button onclick="next()">Última página →</button>
+  </div>
+</section>
+
+<section class="slide" data-title="Final">
+  <span class="float f1">🎈</span><span class="float f2">🎂</span><span class="float f3">💕</span><span class="float f4">✨</span>
+  <div class="card">
+    <div class="big">🥳</div>
+    <div class="kicker">Fin de la sorpresa</div>
+    <h1>¡Que disfrutes muchísimo tu día!</h1>
+    <p>Y que este nuevo año venga cargado de cosas buenas, momentos inesperados y muchas sonrisas.</p>
+    <p><b>Feliz cumpleaños, Ilse. 🎀</b></p>
+    <button class="secondary" onclick="go(0)">Volver a empezar ↻</button>
+  </div>
+</section>
+
+<div class="controls" id="dots"></div>
+<div class="nav"><button id="nextBtn" onclick="next()">Siguiente →</button></div>
+<div id="confetti"></div>
+<audio id="music" src="happy-birthday.mp3" preload="auto" loop></audio>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')], dots=document.getElementById('dots');
+let current=0, started=false;
+slides.forEach((_,i)=>{
+  const d=document.createElement('span'); d.className='dot'+(i===0?' on':'');
+  d.onclick=()=>go(i); dots.appendChild(d);
+});
+function go(i){
+  current=(i+slides.length)%slides.length;
+  slides.forEach((s,n)=>s.classList.toggle('active',n===current));
+  [...dots.children].forEach((d,n)=>d.classList.toggle('on',n===current));
+  document.getElementById('nextBtn').style.display=current===slides.length-1?'none':'block';
+  if(current===4){
+    const v=document.getElementById('birthdayVideo');
+    if(v && v.querySelector('source').src && v.querySelector('source').src.endsWith('birthday-video.mp4')){
+      v.style.display='block'; document.getElementById('videoHint').style.display='none';
+    }
+  }
+}
+function next(){go(current+1)}
+async function openCard(){
+  if(!started){
+    started=true;
+    try{await document.getElementById('music').play()}catch(e){}
+  }
+  burst();
+  next();
+}
+function burst(){
+  const box=document.getElementById('confetti');
+  const pieces=['🎉','✨','💕','🎀','🎈','⭐','🌸','🥳'];
+  for(let i=0;i<90;i++){
+    const s=document.createElement('span'); s.className='bit';
+    s.textContent=pieces[Math.floor(Math.random()*pieces.length)];
+    s.style.left=Math.random()*100+'vw';
+    s.style.fontSize=(14+Math.random()*18)+'px';
+    s.style.animationDelay=(Math.random()*1.2)+'s';
+    box.appendChild(s); setTimeout(()=>s.remove(),5000);
+  }
+}
+</script>
+</body>
+</html>
