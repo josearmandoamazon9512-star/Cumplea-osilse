@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Una sorpresa para Ilse 🎀</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(145deg,#fff7fb,#f7f0ff);color:#514653;overflow-x:hidden}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;position:relative}
+.card{width:min(92vw,520px);background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);border-radius:30px;padding:34px 26px;text-align:center;box-shadow:0 18px 55px rgba(117,82,120,.18);backdrop-filter:blur(10px)}
+h1{font-size:clamp(32px,9vw,52px);margin:8px 0 14px;color:#9a628c}
+p{font-size:18px;line-height:1.65;margin:10px 0}
+button{border:0;border-radius:999px;padding:15px 28px;font-size:18px;font-weight:700;cursor:pointer;background:#d98fbc;color:white;box-shadow:0 9px 22px rgba(217,143,188,.32);transition:.2s}
+button:hover{transform:translateY(-2px)}
+.hidden{display:none}
+.cake{font-size:76px;animation:float 2.5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}} 
+.balloon{position:absolute;font-size:44px;animation:drift 5s ease-in-out infinite;opacity:.9}
+.b1{left:5%;top:12%}.b2{right:6%;top:18%;animation-delay:1s}.b3{left:10%;bottom:10%;animation-delay:2s}.b4{right:9%;bottom:12%;animation-delay:.6s}
+@keyframes drift{50%{transform:translateY(-18px) rotate(4deg)}}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.bit{position:absolute;top:-20px;font-size:18px;animation:fall 3.8s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(500deg);opacity:0}}
+.note{font-size:13px;color:#8c7d8b;margin-top:18px}
+.footer{margin-top:20px;font-size:14px;color:#9b8b99}
+</style>
+</head>
+<body>
+<div id="confetti"></div>
+
+<section class="screen" id="cover">
+  <span class="balloon b1">🎈</span><span class="balloon b2">🎀</span>
+  <span class="balloon b3">🎈</span><span class="balloon b4">✨</span>
+  <div class="card">
+    <div class="cake">🎁</div>
+    <h1>Tienes una sorpresa...</h1>
+    <p>Hay algo pequeño preparado especialmente para ti 🎀</p>
+    <button id="openBtn">Abrir 💗</button>
+  </div>
+</section>
+
+<section class="screen hidden" id="inside">
+  <span class="balloon b1">🎈</span><span class="balloon b2">✨</span>
+  <span class="balloon b3">🎀</span><span class="balloon b4">🎈</span>
+  <div class="card">
+    <div class="cake">🎂</div>
+    <h1>¡Feliz cumpleaños, Ilse!</h1>
+    <p>¡¡¡Que te la pases súper genial en tu día!!!</p>
+    <p>Que cumplas muchos años más en compañía de tus seres queridos. 💕</p>
+    <p>✨ Espero que tengas un día muy bonito. ✨</p>
+    <div class="footer">🎈🎂🎀✨🎁</div>
+    <div class="note">La música comienza al abrir la sorpresa.</div>
+  </div>
+</section>
+
+<audio id="music" src="happy-birthday.mp3" preload="auto"></audio>
+
+<script>
+const btn=document.getElementById('openBtn');
+const cover=document.getElementById('cover');
+const inside=document.getElementById('inside');
+const music=document.getElementById('music');
+const box=document.getElementById('confetti');
+
+btn.addEventListener('click', async ()=>{
+  cover.classList.add('hidden');
+  inside.classList.remove('hidden');
+  try{ await music.play(); }catch(e){}
+  const pieces=['🎉','✨','💕','🎀','🎈','⭐','🌸'];
+  for(let i=0;i<75;i++){
+    const s=document.createElement('span');
+    s.className='bit';
+    s.textContent=pieces[Math.floor(Math.random()*pieces.length)];
+    s.style.left=Math.random()*100+'vw';
+    s.style.animationDelay=(Math.random()*1.4)+'s';
+    s.style.fontSize=(14+Math.random()*16)+'px';
+    box.appendChild(s);
+    setTimeout(()=>s.remove(),4500);
+  }
+});
+</script>
+</body>
+</html>
